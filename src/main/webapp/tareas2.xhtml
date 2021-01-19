@@ -17,33 +17,98 @@
         </style>
     </h:head>
     <h:body>
-        <h:form>
-     
-    <p:dataTable var="tareas" >
-        <f:facet name="header">
-            Tu lista de tareas
-        </f:facet>
-        <p:columnGroup type="header">
-            <p:row>
-                <p:column colspan="3" headerText="Hacer" />
-                 <p:column colspan="3" headerText="En progreso" />
-                  <p:column colspan="3" headerText="Hecho" />
-            </p:row>
-            
-            <p:row>
-                <p:column headerText="ID" />
-                <p:column headerText="Descripcion" />
-                <p:column headerText="Boton" />
-                <p:column headerText="ID" />
-                <p:column headerText="Descripcion" />
-                <p:column headerText="Boton" />
-                <p:column headerText="ID" />
-                <p:column headerText="Descripcion" />
-                <p:column headerText="Boton" />
-            </p:row>
-        </p:columnGroup>
-    </p:dataTable>
-        </h:form>
+
+        <ui:composition template="./WEB-INF/view/plantilla.xhtml">
+
+            <ui:define name="titulo">
+                lista-tareas
+            </ui:define>
+
+            <ui:define name="top">
+                -Lista tareas
+            </ui:define>
+
+            <ui:define name="content">
+                <h1>Lista de Tareas</h1>
+                <hr rendered="true">
+                    Mensajes: <h:messages globalOnly="true"></h:messages>
+                </hr>  
+
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                        <h:form id="formHacer">
+                            <p:dataTable id="hacer" var="tarea" value="#{tareasMB.collecionHacer}"
+                                         selectionMode="single" selection="#{tareasMB.selectTarea}" rowKey="#{tarea.id}">
+                                <f:facet name="header">
+                                    Hacer
+                                </f:facet>
+                                <p:column headerText="ID">
+                                    <h:outputText value="#{tarea.id}" />
+                                </p:column>
+                                <p:column headerText="Descripcion">
+                                    <h:outputText value="#{tarea.tarea}" />
+                                </p:column>
+                                <f:facet name="footer">
+                                    <h:commandButton value="UP" action="#{tareasMB.cambiarEstadoUp()}" >
+                                        <f:ajax event="click" render="progreso hacer " execute="@form"></f:ajax>
+                                    </h:commandButton>
+                                    <h:commandButton value="DOWN" action="#{tareasMB.cambiarEstadoDown()}" >
+                                        <f:ajax event="click" render="progreso hacer " execute="@form"></f:ajax>
+                                    </h:commandButton>
+                                </f:facet>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                    
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                            <h:form id="formProgress">    
+                            <p:dataTable id="progreso" var="tarea" value="#{tareasMB.collecionEnProgreso}"
+                                         selectionMode="single" selection="#{tareasMB.selectTarea}" rowKey="#{tarea.id}">
+                                <f:facet name="header">
+                                    En progreso
+                                </f:facet>
+                                <p:column headerText="ID">
+                                    <h:outputText value="#{tarea.id}" />
+                                </p:column>
+                                <p:column headerText="Descripcion">
+                                    <h:outputText value="#{tarea.tarea}" />
+                                </p:column>
+                                <f:facet name="footer">
+                                    <h:commandButton value="UP" action="#{tareasMB.cambiarEstadoUp()}" />
+                                    <h:commandButton value="DOWN" action="#{tareasMB.cambiarEstadoDown()}" />
+                                </f:facet>
+                                 
+                            </p:dataTable>
+                        </h:form >
+
+                    </div>
+
+                    <div class="ui-g-12 ui-lg-4">
+                        <h:form id="formHecho">
+                            <p:dataTable id="hechas" var="tarea" value="#{tareasMB.collecionHechas}"
+                                         selectionMode="single" selection="#{tareasMB.selectTarea}" rowKey="#{tarea.id}">
+                                <f:facet name="header">
+                                    Hechas
+                                </f:facet>
+                                <p:column headerText="ID">
+                                    <h:outputText value="#{tarea.id}" />
+                                </p:column>
+                                <p:column headerText="Descripcion">
+                                    <h:outputText value="#{tarea.tarea}" />
+                                </p:column>
+                                <f:facet name="footer">
+                                    <h:commandButton value="UP" action="#{tareasMB.cambiarEstadoUp()}" />
+                                    <h:commandButton value="DOWN" action="#{tareasMB.cambiarEstadoDown()}" />
+                                </f:facet>
+                            </p:dataTable>
+
+                        </h:form>
+
+                    </div>         
+                </div> 
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

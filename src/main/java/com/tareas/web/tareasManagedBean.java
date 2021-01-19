@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.model.SelectableDataModel;
 
@@ -26,7 +27,7 @@ import org.primefaces.model.SelectableDataModel;
  * @author user
  */
 @Named(value = "tareasMB")
-@SessionScoped
+@ViewScoped
 public class tareasManagedBean implements Serializable {
     
     private Usuario usuario;
@@ -69,15 +70,19 @@ public class tareasManagedBean implements Serializable {
     
      public Collection<Tarea> getCollecionHacer() {
          this.tareasHacer = tareasServ.tareasCollection(id, "Hacer");
+         System.out.println(".....OBTENIENDO TAREAS HACER ");
+         
         return tareasHacer;
     }
     
       public Collection<Tarea> getCollecionEnProgreso() {
            this.tareasProgreso = tareasServ.tareasCollection(id, "En Progreso");
+           System.out.println(".....OBTENIENDO TAREAS PROGRESO");
         return tareasProgreso;
     }
        public Collection<Tarea> getCollecionHechas() {
            this.tareasHechas = tareasServ.tareasCollection(id, "Hecho");
+           System.out.println(".....OBTENIENDO TAREAS HECHAS");
         return tareasHechas;
     }
        

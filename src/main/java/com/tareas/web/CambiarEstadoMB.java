@@ -8,6 +8,7 @@ package com.tareas.web;
 import com.tareas.excepciones.ExcepcionDBTareas;
 import com.tareas.modelo.Tarea;
 import com.tareas.servicios.TareasService;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Named;
@@ -23,7 +24,7 @@ import javax.inject.Inject;
  */
 @Named(value = "cambiarEstadoMB")
 @ViewScoped
-public class CambiarEstadoMB {
+public class CambiarEstadoMB implements Serializable{
 
  private Tarea selectTarea;
     private int idTarea;

@@ -119,6 +119,9 @@ public class DBTareas {
                 }else if (tareaID.estado.equals("En Progreso")){
                     tareaID.setEstado("Hacer");
                     break;
+                }else if (tareaID.estado.equals("Hacer")){
+                    tareas.remove(tareaID);
+                    break;
                 }
             }
         }    

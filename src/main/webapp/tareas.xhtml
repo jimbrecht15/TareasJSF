@@ -50,8 +50,12 @@
                                     <h:outputText value="#{tarea.tarea}" />
                                 </p:column>
                                 <f:facet name="footer">
-                                    <h:commandButton value="UP" action="#{tareasMB.cambiarEstadoUp()}" />
-                                    <h:commandButton value="DOWN" action="#{tareasMB.cambiarEstadoDown()}" />
+                                    <h:commandButton value="ELIMINAR" action="#{tareasMB.cambiarEstadoDown()}" >
+                                        <f:ajax event="click" render="formHacer:hacer " execute="@form"></f:ajax>
+                                    <h:commandButton value="UP" action="#{tareasMB.cambiarEstadoUp()}">
+                                        <f:ajax event="click" render="formHacer:hacer formProgress:progreso" execute="@form"></f:ajax>
+                                    </h:commandButton>
+                                    </h:commandButton>
                                 </f:facet>
                             </p:dataTable>
                         </h:form>
@@ -70,8 +74,13 @@
                                     <h:outputText value="#{tarea.tarea}" />
                                 </p:column>
                                 <f:facet name="footer">
-                                    <h:commandButton value="UP" action="#{tareasMB.cambiarEstadoUp()}" />
-                                    <h:commandButton value="DOWN" action="#{tareasMB.cambiarEstadoDown()}" />
+                                    
+                                    <h:commandButton value="DOWN" action="#{tareasMB.cambiarEstadoDown()}" >
+                                        <f:ajax event="click" render="formHacer:hacer formProgress:progreso" execute="@form"></f:ajax>
+                                    </h:commandButton>
+                                    <h:commandButton value="UP" action="#{tareasMB.cambiarEstadoUp()}">
+                                        <f:ajax event="click" render="formHecho:hechas formProgress:progreso" execute="@form"></f:ajax>
+                                    </h:commandButton>
                                 </f:facet>
                                  
                             </p:dataTable>
@@ -92,9 +101,13 @@
                                 <p:column headerText="Descripcion">
                                     <h:outputText value="#{tarea.tarea}" />
                                 </p:column>
-                                <f:facet name="footer">
-                                    <h:commandButton value="UP" action="#{tareasMB.cambiarEstadoUp()}" />
-                                    <h:commandButton value="DOWN" action="#{tareasMB.cambiarEstadoDown()}" />
+                               <f:facet name="footer">
+                                    <h:commandButton value="ELIMINAR" action="#{tareasMB.cambiarEstadoUp()}">
+                                        <f:ajax event="click" render="formHecho:hechas " execute="@form"></f:ajax>
+                                    </h:commandButton>
+                                    <h:commandButton value="DOWN" action="#{tareasMB.cambiarEstadoDown()}" >
+                                        <f:ajax event="click" render="formHecho:hechas formProgress:progreso" execute="@form"></f:ajax>
+                                    </h:commandButton>
                                 </f:facet>
                             </p:dataTable>
 
