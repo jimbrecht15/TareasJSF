@@ -8,13 +8,21 @@ package com.tareas.servicios;
 import com.tareas.excepciones.ExcepcionDBTareas;
 import com.tareas.modelo.Tarea;
 import java.util.Collection;
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 
-/**
- *
- * @author user
- */
+
+@Stateless
 public class TareasService {
+
+    public TareasService() {
+    }
       
+    @PostConstruct
+    public void iniciar(){
+        System.out.println("... en el postconstruct");
+    }
+    
     public void altaTarea(Tarea tarea) throws ExcepcionDBTareas{
         DBTareas.addTarea(tarea);
     }

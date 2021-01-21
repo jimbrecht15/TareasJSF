@@ -40,11 +40,12 @@ public class DBUsuario {
     }
     
      
-    public static void addUsuario(Usuario u) throws ExcepcionDBUsuarios{
+    public static boolean addUsuario(Usuario u) throws ExcepcionDBUsuarios{
         boolean agregar = usuarios.add(u);
         if (!agregar){
             throw new ExcepcionDBUsuarios("No se ha añadido el usuario porque ya existe");
         }
+        return agregar; 
     }
     
     
@@ -52,5 +53,8 @@ public class DBUsuario {
         return usuarios; 
     }
   
-    
+    public synchronized static boolean existeEmail(String email){
+        Usuario prueba = new Usuario (1, "", email, ""); 
+        return usuarios.contains(prueba);
+     }
 }

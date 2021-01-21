@@ -10,6 +10,7 @@ import com.tareas.modelo.Usuario;
 import com.tareas.servicios.LoginService;
 import java.io.Serializable;
 import java.util.Date;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -28,6 +29,9 @@ public class LoginManagedBean implements Serializable{
     private String clave;
     private Usuario usuarioCompleto;
     private Date fecha = new Date();
+    
+    //@EJB
+    private LoginService loginService = new LoginService();
     
     public LoginManagedBean() {
     }
@@ -68,7 +72,6 @@ public class LoginManagedBean implements Serializable{
     
      public String login() {
         
-        LoginService loginService = new LoginService();
         //obtener la sesion de JSF 
         FacesContext ctx = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) ctx.getExternalContext().getSession(true);

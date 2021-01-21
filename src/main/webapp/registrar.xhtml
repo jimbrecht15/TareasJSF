@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <title>Registrar</title>
+
+    </h:head>
+
+
+    <body>
+        Mensajes: <h:messages globalOnly="true" />
+        <hr />
+        <ui:composition template="./WEB-INF/view/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form id="formAltaUsuario">
+                    <h:panelGrid columns="3">
+            Email:
+            <h:inputText value="#{registrarUsuarioMB.nuevoUsuario.mail}" >
+                <f:ajax event="change" execute="@this" render="mensajeEmailExiste"/>
+            </h:inputText>
+            <h:outputLabel value="#{registrarUsuarioMB.mensajeExisteEmail}" 
+                           id="mensajeEmailExiste" />
+            <br />
+            Nombre: 
+            <h:inputText value="#{registrarUsuarioMB.nuevoUsuario.nombre}" required = "true" id="nombre"/>            
+            <h:message for ="nombre" ></h:message>
+            Contraseña: 
+            <h:inputText value="#{registrarUsuarioMB.nuevoUsuario.pasw}" required = "true" id="psw" />
+            <h:message for ="psw" ></h:message>            
+            <br />
+            
+            <h:commandButton value="Registrar" action="#{registrarUsuarioMB.altaUsuario()}" />
+        </h:panelGrid>
+                </h:form>
+            </ui:define>
+            
+        </ui:composition>
+
+    </body>
+</html>

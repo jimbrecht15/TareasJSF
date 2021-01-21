@@ -15,9 +15,11 @@
                 border: 1px solid #fafafa;
             }
         </style>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+              
     </h:head>
     <h:body>
-
+        
         <ui:composition template="./WEB-INF/view/plantilla.xhtml">
 
             <ui:define name="titulo">
@@ -50,11 +52,11 @@
                                     <h:outputText value="#{tarea.tarea}" />
                                 </p:column>
                                 <f:facet name="footer">
-                                    <h:commandButton value="ELIMINAR" action="#{tareasMB.cambiarEstadoDown()}" >
-                                        <f:ajax event="click" render="formHacer:hacer " execute="@form"></f:ajax>
-                                    <h:commandButton value="UP" action="#{tareasMB.cambiarEstadoUp()}">
+                                    <h:commandButton value="X" action="#{tareasMB.cambiarEstadoDown()}" >
+                                       <f:ajax event="click" render="formHacer:hacer " execute="@form"></f:ajax>
+                                       </h:commandButton>
+                                       <h:commandButton value="→" action="#{tareasMB.cambiarEstadoUp()}">
                                         <f:ajax event="click" render="formHacer:hacer formProgress:progreso" execute="@form"></f:ajax>
-                                    </h:commandButton>
                                     </h:commandButton>
                                 </f:facet>
                             </p:dataTable>
@@ -75,10 +77,10 @@
                                 </p:column>
                                 <f:facet name="footer">
                                     
-                                    <h:commandButton value="DOWN" action="#{tareasMB.cambiarEstadoDown()}" >
+                                    <h:commandButton value="←" action="#{tareasMB.cambiarEstadoDown()}" >
                                         <f:ajax event="click" render="formHacer:hacer formProgress:progreso" execute="@form"></f:ajax>
                                     </h:commandButton>
-                                    <h:commandButton value="UP" action="#{tareasMB.cambiarEstadoUp()}">
+                                    <h:commandButton value="→" action="#{tareasMB.cambiarEstadoUp()}">
                                         <f:ajax event="click" render="formHecho:hechas formProgress:progreso" execute="@form"></f:ajax>
                                     </h:commandButton>
                                 </f:facet>
@@ -102,11 +104,11 @@
                                     <h:outputText value="#{tarea.tarea}" />
                                 </p:column>
                                <f:facet name="footer">
-                                    <h:commandButton value="ELIMINAR" action="#{tareasMB.cambiarEstadoUp()}">
-                                        <f:ajax event="click" render="formHecho:hechas " execute="@form"></f:ajax>
-                                    </h:commandButton>
-                                    <h:commandButton value="DOWN" action="#{tareasMB.cambiarEstadoDown()}" >
+                                    <h:commandButton value="←" action="#{tareasMB.cambiarEstadoDown()}" >
                                         <f:ajax event="click" render="formHecho:hechas formProgress:progreso" execute="@form"></f:ajax>
+                                    </h:commandButton>
+                                   <h:commandButton value="X" action="#{tareasMB.cambiarEstadoUp()}">
+                                        <f:ajax event="click" render="formHecho:hechas " execute="@form"></f:ajax>
                                     </h:commandButton>
                                 </f:facet>
                             </p:dataTable>

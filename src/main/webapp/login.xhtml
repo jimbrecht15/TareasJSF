@@ -27,19 +27,21 @@
                 
                 <h2> LOGIN </h2>   
                 <h:form id="formularioLogin">
-                    Email: 
+                    <h:panelGrid columns="3">
+                    #{textos.correo}
                     <h:inputText value="#{loginMB.usuario}" required = "true" requiredMessage="Obligatorio" id="nombre"/>
                     <h:message for="nombre"></h:message>
                     <!-- action de commnand button puede ser el nombre del metodo 
                     del managedbean o una página a la que queramos ir -->
-                    <br/>
-                    Contraseña:
-                    <h:inputText value="#{loginMB.clave}" required = "true" id="psw"/>
+                    <br />
+                    #{textos.contrasena}
+                    <h:inputSecret value="#{loginMB.clave}"  required = "true" id="psw"/>
                     <h:message for ="psw" ></h:message>
-                    <h:commandButton action ="#{loginMB.login()}" value="LOGIN"/>
-                    <h:commandButton value="Cancelar" 
+                    <h:commandButton action ="#{loginMB.login()}" value="#{textos.boton_Login}"/>
+                    <h:commandButton value="#{textos.boton_cancelar}" 
                                      action="index" 
                                      immediate ="true"/>
+                    </h:panelGrid>
                 </h:form>
             </ui:define>
 

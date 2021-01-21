@@ -10,45 +10,49 @@ import java.util.Collection;
 import javax.servlet.http.HttpSession;
 
 import com.tareas.modelo.Usuario;
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 
-
-/**
- *
- * @author user
- */
+@Stateless
 public class LoginService {
-    
-    public void login(String mail, String password, HttpSession sesion) throws LoginException{
+
+    public LoginService() {
+    }
+
+    @PostConstruct
+    public void iniciar() {
+        System.out.println("... en el LOGIN postconstruct");
+    }
+
+    public void login(String mail, String password, HttpSession sesion) throws LoginException {
         //crear variables 
         Collection<Usuario> datos = DBUsuario.listaUsuarios();
         Usuario nuevoUsuario = null;
-        
+
         //revisar BD y comprobar si existe usuario y contraseña 
-        for (Usuario u: datos){
-            if (u.getMail().equals(mail)){
+        for (Usuario u : datos) {
+            if (u.getMail().equals(mail)) {
                 nuevoUsuario = u;
-                break; 
+                break;
             }
         }
-        
+
         //si el usuario existe comparar contraseña 
-        
-        if (nuevoUsuario == null){
+        if (nuevoUsuario == null) {
             throw new LoginException("El usuario no existe");
-        }else{
-            if(nuevoUsuario.getPasw().equals(password)){
+        } else {
+            if (nuevoUsuario.getPasw().equals(password)) {
                 //añadir a sesion
                 sesion.setAttribute("usuario", nuevoUsuario);
-                
-                
-            }else {
+
+            } else {
                 throw new LoginException("La contraseña no coincide con el mail introducido");
             }
         }
-        
+
     }//fin login   
-    
-    public void logout(HttpSession sesion){
-    sesion.invalidate();
-}
+
+    public void logout(HttpSession sesion) {
+        sesion.invalidate();
+    }
 }//fin clase 
