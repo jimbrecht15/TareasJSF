@@ -1,12 +1,49 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <title>Agregar- Tarea</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <ui:composition template="./WEB-INF/view/plantilla.xhtml">
+
+            <ui:define name="titulo">
+                Agregar Tarea
+            </ui:define>
+
+            <ui:define name="top">
+                AGREGAR TAREA
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="container">
+                    <h:form id="alta-tarea">
+                        <div class="form-group">
+                            <label for="tarea">Tarea</label>
+                            <h:inputText value="#{tareasMB.definicion}" /> 
+
+                        </div>
+                        <div class="form-group">
+                            <label for="estado">Estado</label>
+                            <h:selectOneMenu value = "#{tareasMB.estado}"> 
+                                <f:selectItem itemValue = "Hacer" itemLabel = "Hacer" /> 
+                                <f:selectItem itemValue = "EnProgreso" itemLabel = "En Progreso" /> 
+                                <f:selectItem itemValue = "Hecho" itemLabel = "Hecho" /> 
+                            </h:selectOneMenu> 	
+                        </div>
+                        <h:commandButton value="Nueva Tarea" action="#{tareasMB.agregarTarea()}" />
+
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
     </h:body>
 </html>
 

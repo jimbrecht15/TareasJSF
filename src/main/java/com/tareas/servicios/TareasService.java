@@ -7,14 +7,20 @@ package com.tareas.servicios;
 
 import com.tareas.excepciones.ExcepcionDBTareas;
 import com.tareas.modelo.Tarea;
+import com.tareas.modelo.Tareas2;
 import java.util.Collection;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 
 @Stateless
 public class TareasService {
 
+    @PersistenceContext(unitName = "tareasPersist" )
+    private EntityManager em;
+    
     public TareasService() {
     }
       
@@ -38,4 +44,15 @@ public class TareasService {
     public void cambiarEstadoDown (int id)throws ExcepcionDBTareas{
         DBTareas.cambiarEstadoDown(id);
     }
+    
+    public void agregarTarea (Tarea tarea) throws ExcepcionDBTareas{
+        DBTareas.addTarea(tarea);
+    }
+    
+    
+    public Tareas2 getTareaJPA(Integer id){
+        Tareas2 t = em.find(Tareas2.class, id);
+    return t;
+    }
+   
 }

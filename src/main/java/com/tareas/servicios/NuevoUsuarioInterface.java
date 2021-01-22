@@ -7,19 +7,16 @@ package com.tareas.servicios;
 
 import com.tareas.excepciones.ExcepcionDBUsuarios;
 import com.tareas.modelo.Usuario;
-import javax.annotation.PostConstruct;
+import javax.ejb.Local;
 
 /**
  *
  * @author user
  */
+@Local
 public interface NuevoUsuarioInterface {
 
-    boolean altaUsuario(Usuario usuario) throws ExcepcionDBUsuarios;
-
-    boolean existeEmail(String email);
-
-    @PostConstruct
-    void iniciar();
+    public boolean altaUsuario(Usuario usuario) throws ExcepcionDBUsuarios;
+    public  boolean existeEmail(String email);
     
 }

@@ -58,6 +58,10 @@ public class tareasManagedBean implements tareasInterface {
     @Override
     public void iniciar(){
         System.out.println( "suma " + calculadoraService.suma(3, 9));
+        System.out.println("Busco tarea con el id 1");
+        //TareaJPA t = tareasService.getTareaJPA(1);
+        //System.out.println("-- Tarea es " + t.descripcion);
+        
         if(usuarioMb.getUsuario() != null){
             usuario= usuarioMb.getUsuarioCompleto();
             id = usuario.getIdUsuario();
@@ -75,6 +79,7 @@ public class tareasManagedBean implements tareasInterface {
     public void setSelectTarea(Tarea selectTarea) {
         this.selectTarea = selectTarea;
     }
+
     
     @Override
      public Collection<Tarea> getCollecionHacer() {
@@ -108,7 +113,8 @@ public class tareasManagedBean implements tareasInterface {
             ctx.addMessage(null, msg);
             return "tareas";
         } catch (ExcepcionDBTareas ex) {
-            Logger.getLogger(CambiarEstadoMB.class.getName()).log(Level.SEVERE, null, ex);
+            FacesMessage msg = new FacesMessage("No se ha cambiado el estado" + ex.getMessage());
+            ctx.addMessage(null, msg);
         }
         return null;
      }
@@ -124,8 +130,11 @@ public class tareasManagedBean implements tareasInterface {
             ctx.addMessage(null, msg);
             return "tareas";
         } catch (ExcepcionDBTareas ex) {
-            Logger.getLogger(CambiarEstadoMB.class.getName()).log(Level.SEVERE, null, ex);
+            FacesMessage msg = new FacesMessage("No se ha cambiado el estado" + ex.getMessage());
+            ctx.addMessage(null, msg);
         }
         return null;
      }
+      
+      
 }

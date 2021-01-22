@@ -17,7 +17,6 @@ public class NuevoUsuarioService implements NuevoUsuarioInterface {
     }
     
     @PostConstruct
-    @Override
     public void iniciar(){
         System.out.println("Iniciar nuevo Usuario");
     }
